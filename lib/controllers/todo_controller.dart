@@ -1,36 +1,37 @@
-import 'dart:convert';
+// import 'dart:convert';
 
-import 'package:awesome_todo_app/services/todo_service.dart';
+// import 'package:awesome_todo_app/models/todo.dart';
+// import 'package:awesome_todo_app/services/todo_service.dart';
 
-class TodoController {
-  final TodoService _todoService = TodoService();
+// class TodoController {
+//   final TodoService _todoService = TodoService();
 
-  getAllTodos() async {
-    await _todoService.getAllTodosRequest().then((response) {
-      int statusCode = response.statusCode;
-      Map<String, dynamic> body = jsonDecode(response.body);
-      if (statusCode == 200) {
-        print('success');
-      } else {
-        print('error');
-      }
-    });
-  }
-}
-
-
+//   Future<List<Todo>> getAllTodos() async {
+//     List<Todo> todo = [];
+//     await _todoService.getAllTodosRequest().then((response) {
+//       int statusCode = response.statusCode;
+//       Map<String, dynamic> body = jsonDecode(response.body);
+//       if (statusCode == 200) {
+//         //success
+//         todo = todoFromJson(response.body);
+//       } else {
+// //error
+//         todo = [];
+//       }
+//     });
+//     return todo;
+//   }
+// }
 
 
 
 // import 'dart:convert';
-
 // import 'package:awesome_todo_app/models/todo.dart';
 // import 'package:awesome_todo_app/services/todo_service.dart';
 // import 'package:flutter/material.dart';
 
 // class TodoController {
 //   final TodoService _todoService = TodoService();
-
 //   /// get all todo as a list of todos
 //   Future<List<Todo>> getAllTodos() async {
 //     List<Todo> todo = [];
