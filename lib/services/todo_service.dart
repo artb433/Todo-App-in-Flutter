@@ -43,47 +43,45 @@
 //   }
 // }
 
+import 'dart:convert';
 
+import 'package:http/http.dart';
 
-// import 'dart:convert';
+class TodoService {
+  final String baseUrl = 'https://insect-mindshare.cyclic-app.com';
 
-// import 'package:http/http.dart';
+  ///get all todos
+  Future<Response> getAllTodosRequest() async {
+    return await get(Uri.parse('$baseUrl/todos'));
+  }
 
-// class TodoService {
-//   final String baseUrl = 'https://insect-mindshare.cyclic-app.com';
+  ///create a todo
+  Future<Response> createTodo(
+      {required String title,
+      required String description,
+      required DateTime deadline}) async {
+    Map<String, dynamic> body = {
+      'title': title,
+      'description': description,
+      'deadline': deadline.toIso8601String()
+    };
+    return await post(Uri.parse('$baseUrl/todos'), body: jsonEncode(body));
+  }
 
-//   ///get all todos
-//   Future<Response> getAllTodosRequest() async {
-//     return await get(Uri.parse('$baseUrl/todos'));
-//   }
+  ///get todo by id (one todo)
+  Future<Response> getTodo(String id) async {
+    return await get(Uri.parse('$baseUrl/todos/$id'));
+  }
 
-//   ///create a todo
-//   Future<Response> createTodo(
-//       {required String title,
-//       required String description,
-//       required DateTime deadline}) async {
-//     Map<String, dynamic> body = {
-//       'title': title,
-//       'description': description,
-//       'deadline': deadline.toIso8601String()
-//     };
-//     return await post(Uri.parse('$baseUrl/todos'), body: jsonEncode(body));
-//   }
+  ///update iscompleted (patch)
+  Future<Response> updateStatus(String id) async {
+    Map<String, dynamic> body = {'isCompleted': true};
 
-//   ///get todo by id (one todo)
-//   Future<Response> getTodo(String id) async {
-//     return await get(Uri.parse('$baseUrl/todos/$id'));
-//   }
+    return await patch(Uri.parse('$baseUrl/todos/$id'), body: body);
+  }
 
-//   ///update iscompleted (patch)
-//   Future<Response> updateStatus(String id) async {
-//     Map<String, dynamic> body = {'isCompleted': true};
-
-//     return await patch(Uri.parse('$baseUrl/todos/$id'), body: body);
-//   }
-
-//   ///delete a todo
-//   Future<Response> deleteTodo(String id) async {
-//     return await delete(Uri.parse('$baseUrl/todos/$id'));
-//   }
-// }
+  ///delete a todo
+  Future<Response> deleteTodo(String id) async {
+    return await delete(Uri.parse('$baseUrl/todos/$id'));
+  }
+}
