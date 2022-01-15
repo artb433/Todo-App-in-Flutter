@@ -1,47 +1,47 @@
-import 'package:http/http.dart';
+// import 'package:http/http.dart';
 
-class TodoService {
-  final String baseUrl = 'https://angry-cap-hare.cyclic.app/';
+// class TodoService {
+//   final String baseUrl = 'https://angry-cap-hare.cyclic.app/';
 
-  ///get all todos
-  Future<Response> getAllTodosRequest() async {
-    return await get(Uri.parse('$baseUrl/todos'));
-  }
+//   ///get all todos
+//   Future<Response> getAllTodosRequest() async {
+//     return await get(Uri.parse('$baseUrl/todos'));
+//   }
 
-//create new todo
-  Future<Response> createTodo(
-      {required String title,
-      required String description,
-      required DateTime deadline}) async {
-    Map<String, dynamic> body = {
-      'title': title,
-      'description': description,
-      'deadline': deadline
-    };
-    return await post(
-      Uri.parse('$baseUrl/todos'),
-      body: body,
-    );
-  }
+// //create new todo
+//   Future<Response> createTodo(
+//       {required String title,
+//       required String description,
+//       required DateTime deadline}) async {
+//     Map<String, dynamic> body = {
+//       'title': title,
+//       'description': description,
+//       'deadline': deadline
+//     };
+//     return await post(
+//       Uri.parse('$baseUrl/todos'),
+//       body: body,
+//     );
+//   }
 
-  Future<Response> getTodo(String id) async {
-    return await get(Uri.parse('$baseUrl/todos/$id'));
-  }
+//   Future<Response> getTodo(String id) async {
+//     return await get(Uri.parse('$baseUrl/todos/$id'));
+//   }
 
-  Future<Response> updateTodo(String id) async {
-    Map<String, dynamic> body = {
-      'isCompleted': true,
-    };
-    return await patch(
-      Uri.parse('$baseUrl/todos/$id'),
-      body: body,
-    );
-  }
+//   Future<Response> updateTodo(String id) async {
+//     Map<String, dynamic> body = {
+//       'isCompleted': true,
+//     };
+//     return await patch(
+//       Uri.parse('$baseUrl/todos/$id'),
+//       body: body,
+//     );
+//   }
 
-  Future<Response> deleteTodo(String id) async {
-    return await delete(Uri.parse('$baseUrl/todos/$id'));
-  }
-}
+//   Future<Response> deleteTodo(String id) async {
+//     return await delete(Uri.parse('$baseUrl/todos/$id'));
+//   }
+// }
 
 
 
